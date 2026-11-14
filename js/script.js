@@ -268,7 +268,7 @@ document.querySelectorAll('[data-liste="references"]').forEach((zone) => {
 /* --- Journal de bord (du plus récent au plus ancien) --- */
 document.querySelectorAll('[data-liste="journal"]').forEach((zone) => {
   const liste = [...(window.JOURNAL || [])].sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-  if (!liste.length) { zone.innerHTML = messageVide("Le journal est vide — ajoute une entrée dans contenu/journal.js"); return; }
+  if (!liste.length) { zone.innerHTML = ""; return; } // journal vide : on n'affiche rien
   const format = (d) => { try { return new Date(d).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }); } catch { return d; } };
   zone.innerHTML = `<ol class="journal">${liste.map((j) => `
     <li>
@@ -282,7 +282,7 @@ document.querySelectorAll('[data-liste="journal"]').forEach((zone) => {
 /* --- Ressources (regroupées par catégorie) --- */
 document.querySelectorAll('[data-liste="ressources"]').forEach((zone) => {
   const liste = window.RESSOURCES || [];
-  if (!liste.length) { zone.innerHTML = messageVide("Aucune ressource pour l'instant — à ajouter dans contenu/ressources.js"); return; }
+  if (!liste.length) { zone.innerHTML = ""; return; } // aucune ressource : on n'affiche rien
   const groupes = {};
   liste.forEach((r) => (groupes[r.categorie || "Divers"] ||= []).push(r));
   zone.innerHTML = Object.entries(groupes).map(([cat, items]) => `
