@@ -249,7 +249,7 @@ const messageVide = (txt) => `<p class="vide">${txt}</p>`;
 document.querySelectorAll('[data-liste="references"]').forEach((zone) => {
   const filtre = zone.dataset.categorie; // optionnel : n'afficher qu'une catégorie
   let liste = (window.REFERENCES || []).filter((r) => !filtre || r.categorie === filtre);
-  if (!liste.length) { zone.innerHTML = messageVide("Aucune référence pour l'instant — à ajouter dans contenu/references.js"); return; }
+  if (!liste.length) { zone.innerHTML = ""; return; } // liste vide : on n'affiche rien
   zone.innerHTML = `<div class="fiches">${liste.map((r) => `
     <article class="fiche">
       <div class="fiche__cat">${echapper(r.categorie)}${r.date ? `<br>${echapper(r.date)}` : ""}</div>

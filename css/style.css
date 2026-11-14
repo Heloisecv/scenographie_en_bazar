@@ -306,13 +306,14 @@ figcaption .num, .legende .num { font-family: var(--machine); font-size: var(--t
   font-family: var(--machine); font-size: .66rem; letter-spacing: .2em; color: var(--crimson);
 }
 .a-ecrire:nth-of-type(2n), .post-it:nth-of-type(2n) { --r: 1deg; }
-.post-it { padding-top: 1rem; } /* pas de mention en haut : moins d'espace */
+.post-it { padding-top: 1rem; min-width: min(16rem, 100%); min-height: 4.5rem; } /* taille minimale : un post-it vide reste visible */
 /* Petite mention modifiable en haut d'un post-it (même look que « À ÉCRIRE ») :
    <p class="post-it"><span class="post-it__mention">Ma mention</span>Mon texte</p> */
 .post-it__mention {
   display: block; margin-bottom: .2rem;
   font-family: var(--machine); font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--crimson);
 }
+.post-it__mention:empty { display: none; } /* mention vide : on ne réserve pas sa place */
 
 /* --- Ligne de cote (comme sur un plan) ------------------------------ */
 .cote { display: flex; align-items: center; gap: .8rem; font-family: var(--machine); font-size: var(--t-xs); color: var(--crimson); margin-block: var(--e-4); }
